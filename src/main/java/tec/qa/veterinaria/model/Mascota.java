@@ -9,7 +9,7 @@ import java.util.List;
 public class Mascota {
 
     @Id
-    @Column(name = "id")
+    @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "especie")
     private String especie;
@@ -20,13 +20,13 @@ public class Mascota {
     @Column(name = "sexo")
     private String sexo;
     @OneToOne
-    @JoinTable(name = "mascota_expediente",joinColumns = @JoinColumn(name = "id_mascota"),inverseJoinColumns = @JoinColumn(name = "id_expediente"))
+    @JoinTable(name = "mascota_expediente",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Expediente expediente;
     @ManyToOne()
-    @JoinTable(name = "cliente_mascota",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "cedula"))
+    @JoinTable(name = "cliente_mascota",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "cedula", insertable =  false, updatable = false))
     private Cliente cliente;
     @OneToMany
-    @JoinTable(name = "mascota_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "mascota_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private List<Consulta> consultas;
 
     public Mascota() {

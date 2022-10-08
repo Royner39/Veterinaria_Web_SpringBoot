@@ -8,16 +8,16 @@ import java.util.List;
 public class Facturacion {
 
     @Id
-    @Column(name = "id")
+    @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "total")
     private double total;
 
     @OneToMany
-    @JoinTable(name = "facturacion_producto",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "facturacion_producto",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private List<Producto> productos;
     @ManyToOne
-    @JoinTable(name = "facturacion_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "facturacion_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id" , insertable =  false, updatable = false))
     private Consulta consulta;
 
     public Facturacion() {

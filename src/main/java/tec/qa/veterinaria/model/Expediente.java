@@ -8,13 +8,13 @@ import java.util.List;
 public class Expediente {
 
     @Id
-    @Column(name="id")
+    @PrimaryKeyJoinColumn(name="id")
     private int id;
     @OneToOne
-    @JoinTable(name = "mascota_expediente",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "mascota_expediente",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Mascota mascota;
     @OneToMany
-    @JoinTable(name = "consulta_expediente",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "consulta_expediente",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private List<Consulta> consultas;
 
     public Expediente() {

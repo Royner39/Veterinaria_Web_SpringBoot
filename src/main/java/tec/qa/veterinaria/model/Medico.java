@@ -8,7 +8,7 @@ import java.util.List;
 public class Medico {
 
     @Id
-    @Column(name = "id")
+    @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "nombre")
     private String nombre;
@@ -16,7 +16,7 @@ public class Medico {
     private String email;
 
     @OneToMany
-    @JoinTable(name = "medico_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "medico_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private List<Consulta> consultas;
 
     public Medico() {

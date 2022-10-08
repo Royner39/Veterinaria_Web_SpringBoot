@@ -20,14 +20,15 @@ public class Cliente {
     @JoinTable(name = "cliente_mascota",joinColumns = @JoinColumn(name = "cedula"),inverseJoinColumns = @JoinColumn(name = "id"))
     private List<Mascota> mascotas;
 
-    public Cliente(int cedula, String nombre, int telefono, String email) {
+    public Cliente() {
+    }
+
+    public Cliente(int cedula, String nombre, int telefono, String email, List<Mascota> mascotas) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
-    }
-
-    public Cliente() {
+        this.mascotas = mascotas;
     }
 
     public int getCedula() {
@@ -60,5 +61,13 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Mascota> getMascotas() {
+        return mascotas;
+    }
+
+    public void setMascotas(List<Mascota> mascotas) {
+        this.mascotas = mascotas;
     }
 }

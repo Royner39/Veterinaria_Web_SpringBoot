@@ -1,5 +1,7 @@
 package tec.qa.veterinaria.model;
 
+import org.springframework.context.annotation.Primary;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +9,7 @@ import javax.persistence.*;
 public class Producto {
 
     @Id
-    @Column(name = "id")
+    @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "descripcion")
     private String descripcion;
@@ -19,11 +21,7 @@ public class Producto {
     private int stock;
 
     @ManyToOne
-    @JoinTable(name = "producto_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
-    private Consulta consulta;
-
-    @ManyToOne
-    @JoinTable(name = "facturacion_producto",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "facturacion_producto",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Facturacion factura;
 
     public Producto() {
@@ -35,7 +33,6 @@ public class Producto {
         this.precio = precio;
         this.cantidad = cantidad;
         this.stock = stock;
-        this.consulta = consulta;
         this.factura = factura;
     }
 
@@ -77,14 +74,6 @@ public class Producto {
 
     public void setStock(int stock) {
         this.stock = stock;
-    }
-
-    public Consulta getConsulta() {
-        return consulta;
-    }
-
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
     }
 
     public Facturacion getFactura() {

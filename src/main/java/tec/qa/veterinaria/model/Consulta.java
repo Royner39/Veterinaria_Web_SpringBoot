@@ -9,7 +9,7 @@ import java.util.List;
 public class Consulta {
 
     @Id
-    @Column(name = "id")
+    @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "descripcion")
     private String descripcion;
@@ -17,20 +17,17 @@ public class Consulta {
     private Date fecha;
 
     @ManyToOne
-    @JoinTable(name = "medico_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "medico_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Medico medico;
-    @OneToMany
-    @JoinTable(name = "producto_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
-    private List<Producto> receta;
 
     @ManyToOne
-    @JoinTable(name = "consulta_expediente",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "consulta_expediente",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Expediente expediente;
     @ManyToOne
-    @JoinTable(name = "mascota_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "mascota_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private Mascota mascota;
     @OneToMany
-    @JoinTable(name = "facturacion_consulta",joinColumns = @JoinColumn(name = "id"),inverseJoinColumns = @JoinColumn(name = "id"))
+    @JoinTable(name = "facturacion_consulta",joinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id", insertable =  false, updatable = false))
     private List<Facturacion> facturas;
 
     public Consulta() {
@@ -41,7 +38,6 @@ public class Consulta {
         this.descripcion = descripcion;
         this.fecha = fecha;
         this.medico = medico;
-        this.receta = receta;
         this.expediente = expediente;
         this.mascota = mascota;
         this.facturas = facturas;
@@ -77,14 +73,6 @@ public class Consulta {
 
     public void setMedico(Medico medico) {
         this.medico = medico;
-    }
-
-    public List<Producto> getReceta() {
-        return receta;
-    }
-
-    public void setReceta(List<Producto> receta) {
-        this.receta = receta;
     }
 
     public Expediente getExpediente() {
