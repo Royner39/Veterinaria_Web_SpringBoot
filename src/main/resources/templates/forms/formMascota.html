@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Veterinaria</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <div class="col-sm-6">
+        <form th:action="@{/guardarMascota}" th:object="${mascota}" method="POST">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Módulo Mascota</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Id</label>
+                        <input th:field="*{id}" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input th:field="*{nombre}" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Especie</label>
+                        <input th:field="*{especie}" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <input th:field="*{sexo}" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha Nacimiento</label>
+                        <input th:field="*{fechaNacimiento}" type="datetime-local" class="form-control">
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <input type="submit" value="Guardar Mascota" class="btn btn-success">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
