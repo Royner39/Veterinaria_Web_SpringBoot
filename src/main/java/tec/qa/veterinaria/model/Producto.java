@@ -1,7 +1,5 @@
 package tec.qa.veterinaria.model;
 
-import org.springframework.context.annotation.Primary;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,8 +13,6 @@ public class Producto {
     private String descripcion;
     @Column(name = "precio")
     private double precio;
-    @Column(name = "cantidad")
-    private int cantidad;
     @Column(name = "stock")
     private int stock;
 
@@ -27,11 +23,10 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int id, String descripcion, double precio, int cantidad, int stock, Consulta consulta, Facturacion factura) {
+    public Producto(int id, String descripcion, double precio, int stock, Consulta consulta, Facturacion factura) {
         this.id = id;
         this.descripcion = descripcion;
         this.precio = precio;
-        this.cantidad = cantidad;
         this.stock = stock;
         this.factura = factura;
     }
@@ -60,15 +55,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public int getStock() {
+   public int getStock() {
         return stock;
     }
 

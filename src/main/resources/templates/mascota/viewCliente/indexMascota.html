@@ -7,28 +7,29 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Lista de Clientes</h1>
-    <a th:href="@{/nuevoMedico}" class="btn btn-primary">Nuevo</a>
+    <h1>Mis Mascotas</h1>
+    <a th:href="@{/nuevaMascota}" class="btn btn-primary">Nuevo</a>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
             <td>Nombre</td>
-            <td>Email</td>
+            <td>Especie</td>
+            <td>Sexo</td>
+            <td>Fecha Nacimiento</td>
             <td>Acciones</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="medico:${medicos}">
-            <td th:text="${medico.id}"></td>
-            <td th:text="${medico.nombre}"></td>
-            <td th:text="${medico.email}"></td>
+        <tr th:each="mascota:${mascotas}">
+            <td th:text="${mascota.id}"></td>
+            <td th:text="${mascota.nombre}"></td>
+            <td th:text="${mascota.especie}"></td>
+            <td th:text="${mascota.sexo}"></td>
+            <td th:text="${mascota.fechaNacimiento}"></td>
             <td>
-                <a th:href="@{/listarClientes}" class="btn btn-secondary">Ver Clientes</a>
-            </td>
-            <td>
-                <a th:href="@{/editarMedico/}+${medico.id}" class="btn btn-warning">Editar</a>
-                <a th:onclick="eliminarMedico([[${medico.id}]])" class= "btn btn-danger">Eliminar</a>
+                <a th:href="@{/verProductos/}+${mascota.id}" class="btn btn-secondary">Comprar Productos</a>
+                <a th:href="@{/nuevaConsulta/}+${mascota.id}" class= "btn btn-secondary">Realizar Consulta</a>
             </td>
         </tr>
         </tbody>

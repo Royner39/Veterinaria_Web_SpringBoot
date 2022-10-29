@@ -27,18 +27,27 @@ public class MascotaController {
     @Autowired
     private IClienteService clienteService;
 
-    @GetMapping("/listarMascotas/{cedula_cliente}")
-    public String listarMascotas(@PathVariable int cedula_cliente, Model model){
+
+    @GetMapping("/verMascotas/{cedula_cliente}")
+    public String listarMascotasCliente(@PathVariable int cedula_cliente, Model model){
         Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
         List<Mascota> mascotas = mascotaService.listarByCliente(cliente.get());
         model.addAttribute("mascotas",mascotas);
-        return "mascota/indexMascota";
+        return "mascota/viewCliente/indexMascota";
+    }
+
+    @GetMapping("/listarMascotas/{cedula_cliente}")
+    public String listarMascotasMedico(@PathVariable int cedula_cliente, Model model){
+        Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
+        List<Mascota> mascotas = mascotaService.listarByCliente(cliente.get());
+        model.addAttribute("mascotas",mascotas);
+        return "mascota/viewMedico/indexMascota";
     }
 
     @GetMapping("/nuevaMascota")
     public String agregarMascota(Model model){
         model.addAttribute("mascota",new Mascota());
-        return "mascota/formMascota";
+        return "mascota/viewMedico/formMascota";
     }
 
     @PostMapping("/guardarMascota")
@@ -47,14 +56,14 @@ public class MascotaController {
         return "redirect:/listarMascotas";
     }
 
-    @GetMapping("/editarCliente/{id}")
+    @GetMapping("/editarMascota/{id}")
     public String editarMascota(@PathVariable int id, Model model){
         Optional<Mascota> mascota = mascotaService.listarId(id);
         model.addAttribute("mascota",mascota);
-        return "mascota/formMascota";
+        return "mascota/viewMedico/formMascota";
     }
 
-    @GetMapping("/eliminarCliente/{id}")
+    @GetMapping("/eliminarMascota/{id}")
     public String eliminarMascota(@PathVariable int id,Model model){
         mascotaService.delete(id);
         return "redirect:/listarMascotas";

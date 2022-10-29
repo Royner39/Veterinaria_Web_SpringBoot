@@ -8,14 +8,15 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1 th:align="center">Menú Principal Veterinaria</h1>
+    <h1 th:align="center">Menú Médico</h1>
     <br><br><br><br>
     <table class="table">
         <tbody>
         <tr>
+            <h3 th:align="center">Opciones</h3>
             <td th:align="center">
-                <a th:href="@{/loginCliente}" class="btn btn-primary btn-lg">Cliente</a>
-                <a th:href="@{/loginMedico}" class="btn btn-primary btn-lg">Médico</a>
+                <a th:href="@{/listarClientes}" class="btn btn-primary btn-lg">Ver Clientes</a>
+                <a th:href="@{/listarProductos}" class="btn btn-primary btn-lg">Ver Inventario</a>
             </td>
 
         </tr>

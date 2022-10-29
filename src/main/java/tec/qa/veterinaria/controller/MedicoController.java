@@ -32,11 +32,14 @@ public class MedicoController {
     @PostMapping("/checkMedico")
     public String checkMedico(@Valid int id, String password){
         if (medicoService.login(id, password)){
-            return "redirect:/listarClientes";
+            return "redirect:/menuMedico";
         }
         return "redirect:/loginMedico";
     }
-
+    @GetMapping("/menuMedico")
+    public String menuMedico(){
+        return "medico/menuMedico";
+    }
 
     @GetMapping("/listarMedicos")
     public String listarMedicos(Model model){

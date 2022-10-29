@@ -31,7 +31,7 @@ public class ClienteController {
     @PostMapping("/checkCliente")
     public String checkCliente(@Valid int cedula, String password){
         if (clienteService.login(cedula, password)){
-            return "redirect:/listarMascotas/"+cedula;
+            return "redirect:/verMascotas/"+cedula;
         }
         return "redirect:/loginCliente";
     }
