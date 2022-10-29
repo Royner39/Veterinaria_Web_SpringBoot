@@ -16,6 +16,8 @@ public class Cliente {
     private int telefono;
     @Column(name="email")
     private String email;
+    @Column(name="password")
+    private String password;
     @OneToMany
     @JoinTable(name = "cliente_mascota",joinColumns = @JoinColumn(name = "cedula"),inverseJoinColumns = @JoinColumn(name = "id_mascota"))
     private List<Mascota> mascotas;
@@ -23,11 +25,12 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(int cedula, String nombre, int telefono, String email, List<Mascota> mascotas) {
+    public Cliente(int cedula, String nombre, int telefono, String email, String password, List<Mascota> mascotas) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.telefono = telefono;
         this.email = email;
+        this.password = password;
         this.mascotas = mascotas;
     }
 
@@ -61,6 +64,14 @@ public class Cliente {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Mascota> getMascotas() {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tec.qa.veterinaria.interfaceServices.IClienteService;
 import tec.qa.veterinaria.interfaceServices.IMascotaService;
 import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Mascota;
@@ -23,18 +24,21 @@ public class MascotaController {
     @Autowired
     private IMascotaService mascotaService;
 
+    @Autowired
+    private IClienteService clienteService;
 
-    @GetMapping("/listarMascotas/{cliente}")
-    public String listarMascotas(Model model, Cliente cliente){
-        List<Mascota> mascotas = mascotaService.listarByCliente(cliente);
+    @GetMapping("/listarMascotas/{cedula_cliente}")
+    public String listarMascotas(@PathVariable int cedula_cliente, Model model){
+        Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
+        List<Mascota> mascotas = mascotaService.listarByCliente(cliente.get());
         model.addAttribute("mascotas",mascotas);
-        return "sites/indexMascota";
+        return "mascota/indexMascota";
     }
 
     @GetMapping("/nuevaMascota")
     public String agregarMascota(Model model){
         model.addAttribute("mascota",new Mascota());
-        return "forms/formMascota";
+        return "mascota/formMascota";
     }
 
     @PostMapping("/guardarMascota")
@@ -47,7 +51,7 @@ public class MascotaController {
     public String editarMascota(@PathVariable int id, Model model){
         Optional<Mascota> mascota = mascotaService.listarId(id);
         model.addAttribute("mascota",mascota);
-        return "forms/formMascota";
+        return "mascota/formMascota";
     }
 
     @GetMapping("/eliminarCliente/{id}")

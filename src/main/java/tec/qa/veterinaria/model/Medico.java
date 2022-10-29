@@ -14,6 +14,8 @@ public class Medico {
     private String nombre;
     @Column(name = "email")
     private String email;
+    @Column(name = "password")
+    private String password;
 
     @OneToMany
     @JoinTable(name = "medico_consulta",joinColumns = @JoinColumn(name = "id_medico", insertable =  false, updatable = false),inverseJoinColumns = @JoinColumn(name = "id_consulta", insertable =  false, updatable = false))
@@ -22,10 +24,11 @@ public class Medico {
     public Medico() {
     }
 
-    public Medico(int id, String nombre, String email, List<Consulta> consultas) {
+    public Medico(int id, String nombre, String email, String password, List<Consulta> consultas) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
+        this.password = password;
         this.consultas = consultas;
     }
 
@@ -51,6 +54,14 @@ public class Medico {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public List<Consulta> getConsultas() {

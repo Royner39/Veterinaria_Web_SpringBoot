@@ -3,6 +3,7 @@ package tec.qa.veterinaria.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tec.qa.veterinaria.interfaceServices.IMascotaService;
+import tec.qa.veterinaria.interfaceServices.IClienteService;
 import tec.qa.veterinaria.interfaces.IMascota;
 import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Mascota;
@@ -16,12 +17,13 @@ public class MascotaService implements IMascotaService {
     @Autowired
     private IMascota data;
 
+    private IClienteService clienteService;
     @Override
     public List<Mascota> listar() {
 
         return (List<Mascota>)data.findAll();
     }
-
+    @Override
     public List<Mascota> listarByCliente(Cliente cliente) {
 
         return cliente.getMascotas();

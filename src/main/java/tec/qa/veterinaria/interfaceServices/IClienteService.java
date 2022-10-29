@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface IClienteService {
     List<Cliente> listar();
     Optional<Cliente> listarId(int cedula);
-    int save(Cliente c);
-    void delete(int cedula);
+    boolean login(int cedula, String password);
+    boolean save(Cliente cliente);
+    boolean delete(int cedula);
 }

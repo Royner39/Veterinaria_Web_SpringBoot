@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping
-public class MainController {
+public class MenuController {
 
-    @GetMapping("/menu")
-    public String verMenu(){
+    @GetMapping("/veterinaria")
+    public String menu(){
 
         return "index";
     }

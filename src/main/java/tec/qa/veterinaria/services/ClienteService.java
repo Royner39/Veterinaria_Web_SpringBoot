@@ -26,18 +26,35 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public int save(Cliente c) {
-        int res = 0;
+    public boolean login(int cedula, String password) {
+        if (data.existsById(cedula)) {
+            Optional<Cliente> cliente = data.findById(cedula);
+            if (cliente.get().getCedula() == cedula && cliente.get().getPassword().equals(password)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean save(Cliente c) {
+
         Cliente cliente = data.save(c);
         if (!cliente.equals(null)){
-            res=1;
+            return true;
         }
-        return res;
+        return false;
     }
 
 
     @Override
-    public void delete(int cedula) {
-        data.deleteById(cedula);
+    public boolean delete(int cedula) {
+        if (data.existsById(cedula)) {
+            data.deleteById(cedula);
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
