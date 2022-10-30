@@ -17,7 +17,7 @@ public class MenuController {
     @GetMapping("/error")
     public String error(){
 
-        return "index";
+        return "error";
     }
 
 }

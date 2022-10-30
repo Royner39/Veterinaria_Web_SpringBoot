@@ -26,11 +26,17 @@ public class ConsultaService implements IConsultaService {
     }
 
     @Override
-    public boolean save(Consulta c) {
+    public boolean save(Consulta consulta) {
 
-        Consulta consulta = data.save(c);
-        if (!consulta.equals(null)){
-            return true;
+        try {
+            if (consulta != null) {
+                Consulta consulta1 = data.save(consulta);
+                if (consulta1 != null) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -38,12 +44,16 @@ public class ConsultaService implements IConsultaService {
 
     @Override
     public boolean delete(int id) {
-        if (data.existsById(id)) {
-            data.deleteById(id);
-            return true;
-        } else {
-            return false;
+        try {
+            if (data.existsById(id)) {
+                data.deleteById(id);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 }

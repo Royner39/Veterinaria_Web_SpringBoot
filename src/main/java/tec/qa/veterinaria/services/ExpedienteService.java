@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tec.qa.veterinaria.interfaceServices.IExpedienteService;
 import tec.qa.veterinaria.interfaces.IExpediente;
-import tec.qa.veterinaria.interfaces.IMascota;
-import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Expediente;
 import tec.qa.veterinaria.model.Mascota;
 

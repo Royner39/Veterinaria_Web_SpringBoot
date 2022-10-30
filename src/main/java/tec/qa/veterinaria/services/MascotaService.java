@@ -7,7 +7,6 @@ import tec.qa.veterinaria.interfaces.IMascota;
 import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Mascota;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,9 +57,8 @@ public class MascotaService implements IMascotaService {
     public boolean save(Mascota m, Cliente c) {
         try {
             if (c != null) {
-                m.setCliente(c);
-                c.setMascotas(m);
                 Mascota mascota = data.save(m);
+
                 if (mascota != null){
                     return true;
                 }

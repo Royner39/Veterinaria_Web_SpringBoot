@@ -57,6 +57,7 @@ public class MascotaController {
     public String guardarMascota(@PathVariable int cedula_cliente, @Valid Mascota mascota, Model model){
         Optional<Cliente> cliente1 = clienteService.listarId(cedula_cliente);
         if (cliente1.isPresent()) {
+            cliente1.get().setMascotas(mascota);
             mascotaService.save(mascota, cliente1.get());
         }
         return "redirect:/listarMascotas/"+cedula_cliente;

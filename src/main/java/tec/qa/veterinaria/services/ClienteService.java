@@ -27,21 +27,33 @@ public class ClienteService implements IClienteService {
 
     @Override
     public boolean login(int cedula, String password) {
-        if (data.existsById(cedula)) {
-            Optional<Cliente> cliente = data.findById(cedula);
-            if (cliente.get().getCedula() == cedula && cliente.get().getPassword().equals(password)) {
-                return true;
+        try {
+            if (data.existsById(cedula)) {
+                Optional<Cliente> cliente = data.findById(cedula);
+                if (cliente.isPresent()){
+                    if (cliente.get().getCedula() == cedula && cliente.get().getPassword().equals(password)) {
+                        return true;
+                    }
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
 
     @Override
-    public boolean save(Cliente c) {
+    public boolean save(Cliente cliente) {
 
-        Cliente cliente = data.save(c);
-        if (!cliente.equals(null)){
-            return true;
+        try {
+            if (cliente != null) {
+                Cliente cliente1 = data.save(cliente);
+                if (cliente1 != null) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -49,12 +61,16 @@ public class ClienteService implements IClienteService {
 
     @Override
     public boolean delete(int cedula) {
-        if (data.existsById(cedula)) {
-            data.deleteById(cedula);
-            return true;
-        } else {
-            return false;
+        try {
+            if (data.existsById(cedula)) {
+                data.deleteById(cedula);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 }

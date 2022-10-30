@@ -52,8 +52,11 @@ public class ClienteController {
 
     @PostMapping("/guardarCliente")
     public String guardarCliente(@Valid Cliente c, Model model){
-        clienteService.save(c);
-        return "redirect:/listarClientes";
+        int cedula = c.getCedula();
+        if (clienteService.save(c)) {
+            return "redirect:/listarMascotas/"+cedula;
+        }
+        return "redirect:/error";
     }
 
     @GetMapping("/editarCliente/{cedula}")
@@ -65,8 +68,10 @@ public class ClienteController {
 
     @GetMapping("/eliminarCliente/{cedula}")
     public String eliminarCliente(@PathVariable int cedula,Model model){
-        clienteService.delete(cedula);
-        return "redirect:/listarClientes";
+        if (clienteService.delete(cedula)) {
+            return "redirect:/listarClientes";
+        }
+        return "redirect:/error";
     }
 
 

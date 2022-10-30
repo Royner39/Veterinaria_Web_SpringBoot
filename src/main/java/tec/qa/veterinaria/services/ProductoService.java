@@ -2,13 +2,8 @@ package tec.qa.veterinaria.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tec.qa.veterinaria.interfaceServices.IClienteService;
 import tec.qa.veterinaria.interfaceServices.IProductoService;
-import tec.qa.veterinaria.interfaces.IMascota;
 import tec.qa.veterinaria.interfaces.IProducto;
-import tec.qa.veterinaria.model.Cliente;
-import tec.qa.veterinaria.model.Mascota;
-import tec.qa.veterinaria.model.Medico;
 import tec.qa.veterinaria.model.Producto;
 
 import java.util.List;
@@ -34,9 +29,16 @@ public class ProductoService implements IProductoService {
     @Override
     public boolean save(Producto p) {
 
-        Producto producto = data.save(p);
-        if (!producto.equals(null)){
-            return true;
+        try {
+            if (p != null) {
+                Producto producto = data.save(p);
+                if (producto != null){
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -44,12 +46,14 @@ public class ProductoService implements IProductoService {
 
     @Override
     public boolean delete(int id) {
-        if (data.existsById(id)) {
-            data.deleteById(id);
-            return true;
-        } else {
-            return false;
+        try {
+            if (data.existsById(id)) {
+                data.deleteById(id);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 }

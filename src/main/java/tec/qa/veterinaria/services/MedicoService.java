@@ -27,11 +27,17 @@ public class MedicoService implements IMedicoService {
 
     @Override
     public boolean login(int id, String password) {
-        if (data.existsById(id)) {
-            Optional<Medico> medico = data.findById(id);
-            if (medico.get().getId() == id && medico.get().getPassword().equals(password)) {
-                return true;
+        try {
+            if (data.existsById(id)) {
+                Optional<Medico> medico = data.findById(id);
+                if (medico.isPresent()) {
+                    if (medico.get().getId() == id && medico.get().getPassword().equals(password)) {
+                        return true;
+                    }
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -39,9 +45,20 @@ public class MedicoService implements IMedicoService {
     @Override
     public boolean save(Medico m) {
 
-        Medico medico = data.save(m);
-        if (!medico.equals(null)){
-            return true;
+        try {
+            if (m != null) {
+                if (data.existsById(m.getId())) {
+                    return false;
+                } else {
+                    Medico medico = data.save(m);
+                    if (medico != null){
+                        return true;
+                    }
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -49,12 +66,14 @@ public class MedicoService implements IMedicoService {
 
     @Override
     public boolean delete(int id) {
-        if (data.existsById(id)) {
-            data.deleteById(id);
-            return true;
-        } else {
-            return false;
+        try {
+            if (data.existsById(id)) {
+                data.deleteById(id);
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
+        return false;
     }
 }
