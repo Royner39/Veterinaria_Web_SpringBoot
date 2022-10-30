@@ -8,17 +8,21 @@ class ExpedienteServiceTest extends ExpedienteService {
 
     @Test
     void testListar() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testListarId() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testSave() {
+        fail("Not yet implemented");
     }
 
     @Test
     void testDelete() {
+        fail("Not yet implemented");
     }
 }

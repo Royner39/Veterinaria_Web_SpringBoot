@@ -2,6 +2,8 @@ package tec.qa.veterinaria.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClienteTest extends Cliente {
@@ -47,6 +49,6 @@ class ClienteTest extends Cliente {
         machita.setEspecie("Gato");
         machita.setId(1);
         cliente.setMascotas(machita);
-        assertEquals(machita, cliente.getMascotas().get(0));
+        assertEquals(List.of(machita), cliente.getMascotas());
     }
 }
