@@ -8,7 +8,6 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="cedula")
     private int cedula;
     @Column(name="nombre")

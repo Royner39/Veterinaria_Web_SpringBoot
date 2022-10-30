@@ -8,14 +8,15 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1 th:align="center">Menú Médico</h1>
+    <h1 th:align="center">Menú Cliente</h1>
+    <a th:href="@{/veterinaria}" class="btn btn-danger" th:align="right">Cerrar Sesión</a>
     <br><br><br><br>
     <table class="table">
         <tbody>
         <tr>
             <h3 th:align="center">Opciones</h3>
             <td th:align="center">
-                <a th:href="@{/listarClientes}" class="btn btn-primary btn-lg">Ver Clientes</a>
+                <a th:href="@{/listarClientes}" class="btn btn-primary btn-lg">Ver Mascotas</a>
                 <a th:href="@{/listarProductos}" class="btn btn-primary btn-lg">Ver Inventario</a>
             </td>
 
@@ -23,8 +24,7 @@
         </tbody>
 
     </table>
-    <br><br><br><br>
-    <a th:href="@{/veterinaria}" class="btn btn-danger">Cerrar Sesión</a>
+
 
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
