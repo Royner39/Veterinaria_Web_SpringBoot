@@ -8,6 +8,7 @@ import java.util.List;
 public class Facturacion {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "total")

@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Producto {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "descripcion")

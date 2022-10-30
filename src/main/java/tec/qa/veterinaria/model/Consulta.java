@@ -9,6 +9,7 @@ import java.util.List;
 public class Consulta {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @PrimaryKeyJoinColumn(name = "id")
     private int id;
     @Column(name = "descripcion")
