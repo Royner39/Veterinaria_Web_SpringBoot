@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Veterinaria</title>
@@ -7,29 +7,22 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Lista de Mascotas</h1>
-    <a th:href="@{/nuevaMascota/}+${cliente.cedula}" class="btn btn-primary">Nuevo</a>
+    <h1>Lista de Expedientes</h1>
+    <a th:href="@{/nuevoExpediente}" class="btn btn-primary">Nuevo</a>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
-            <td>Nombre</td>
-            <td>Especie</td>
-            <td>Sexo</td>
-            <td>Fecha Nacimiento</td>
+            <td>Mascota</td>
             <td>Acciones</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mascota:${mascotas}">
-            <td th:text="${mascota.id}"></td>
-            <td th:text="${mascota.nombre}"></td>
-            <td th:text="${mascota.especie}"></td>
-            <td th:text="${mascota.sexo}"></td>
-            <td th:text="${mascota.fechaNacimiento}"></td>
+        <tr th:each="expediente:${expedientes}">
+            <td th:text="${expediente.id}"></td>
+            <td th:text="${expediente.mascota.nombre}"></td>
             <td>
-                <a th:href="@{/editarMascota/}+${mascota.id}" class="btn btn-warning">Editar</a>
-                <a th:onclick="eliminarMascota(${mascota.id},${cliente.cedula})" class= "btn btn-danger">Eliminar</a>
+                <a th:href="@{/verExpediente/}+${mascota.id}" class="btn btn-warning">Ver Consultas</a>
             </td>
         </tr>
         </tbody>

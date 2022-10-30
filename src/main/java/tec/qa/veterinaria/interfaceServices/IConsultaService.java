@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface IConsultaService {
     List<Consulta> listar();
     Optional<Consulta> listarId(int id);
-    int save(Consulta consulta);
-    void delete(int id);
+    boolean save(Consulta consulta);
+    boolean delete(int id);
 }

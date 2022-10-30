@@ -3,11 +3,11 @@ package tec.qa.veterinaria.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tec.qa.veterinaria.interfaceServices.IMascotaService;
-import tec.qa.veterinaria.interfaceServices.IClienteService;
 import tec.qa.veterinaria.interfaces.IMascota;
 import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Mascota;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +17,6 @@ public class MascotaService implements IMascotaService {
     @Autowired
     private IMascota data;
 
-    private IClienteService clienteService;
     @Override
     public List<Mascota> listar() {
 
@@ -35,17 +34,59 @@ public class MascotaService implements IMascotaService {
     }
 
     @Override
-    public int save(Mascota m) {
-        int res = 0;
-        Mascota mascota = data.save(m);
-        if (!mascota.equals(null)){
-            res=1;
+    public boolean update(Mascota m) {
+        try {
+            if (m != null) {
+                Optional<Mascota> mascota = data.findById(m.getId());
+                if (mascota.isPresent()) {
+                    mascota.get().setNombre(m.getNombre());
+                    mascota.get().setEspecie(m.getEspecie());
+                    mascota.get().setSexo(m.getSexo());
+                    mascota.get().setFechaNacimiento(m.getFechaNacimiento());
+                    data.save(mascota.get());
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return res;
+        return false;
     }
 
     @Override
-    public void delete(int id) {
-        data.deleteById(id);
+    public boolean save(Mascota m, Cliente c) {
+        try {
+            if (c != null) {
+                m.setCliente(c);
+                c.setMascotas(m);
+                Mascota mascota = data.save(m);
+                if (mascota != null){
+                    return true;
+                }
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+
     }
+
+    @Override
+    public boolean delete(int id) {
+        try {
+            if (data.existsById(id)) {
+                data.deleteById(id);
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+
 }

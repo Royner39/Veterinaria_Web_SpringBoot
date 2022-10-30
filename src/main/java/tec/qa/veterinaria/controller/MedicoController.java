@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 
+
 @Controller
 @RequestMapping
 public class MedicoController {
@@ -31,8 +32,14 @@ public class MedicoController {
 
     @PostMapping("/checkMedico")
     public String checkMedico(@Valid int id, String password){
-        if (medicoService.login(id, password)){
-            return "redirect:/menuMedico";
+
+        try {
+            if (medicoService.login(id, password)){
+               return "redirect:/menuMedico";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
         }
         return "redirect:/loginMedico";
     }

@@ -19,7 +19,7 @@ public class Cliente {
     @Column(name="password")
     private String password;
     @OneToMany
-    @JoinTable(name = "cliente_mascota",joinColumns = @JoinColumn(name = "cedula"),inverseJoinColumns = @JoinColumn(name = "id_mascota"))
+    @JoinTable(name = "cliente_mascota" ,joinColumns = @JoinColumn(name = "cedula"),inverseJoinColumns = @JoinColumn(name = "id_mascota"))
     private List<Mascota> mascotas;
 
     public Cliente() {
@@ -78,7 +78,7 @@ public class Cliente {
         return mascotas;
     }
 
-    public void setMascotas(List<Mascota> mascotas) {
-        this.mascotas = mascotas;
+    public void setMascotas(Mascota mascota) {
+        this.mascotas.add(mascota);
     }
 }

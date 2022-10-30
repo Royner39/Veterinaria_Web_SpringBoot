@@ -41,26 +41,44 @@ public class MascotaController {
         Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
         List<Mascota> mascotas = mascotaService.listarByCliente(cliente.get());
         model.addAttribute("mascotas",mascotas);
+        model.addAttribute("cliente",cliente.get());
         return "mascota/viewMedico/indexMascota";
     }
 
-    @GetMapping("/nuevaMascota")
-    public String agregarMascota(Model model){
+    @GetMapping("/nuevaMascota/{cedula_cliente}")
+    public String agregarMascota(@PathVariable int cedula_cliente,Model model){
+        Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
         model.addAttribute("mascota",new Mascota());
+        model.addAttribute("cliente", cliente.get());
         return "mascota/viewMedico/formMascota";
     }
 
-    @PostMapping("/guardarMascota")
-    public String guardarMascota(@Valid Mascota mascota, Model model){
-        mascotaService.save(mascota);
-        return "redirect:/listarMascotas";
+    @PostMapping("/guardarMascota/{cedula_cliente}")
+    public String guardarMascota(@PathVariable int cedula_cliente, @Valid Mascota mascota, Model model){
+        Optional<Cliente> cliente1 = clienteService.listarId(cedula_cliente);
+        if (cliente1.isPresent()) {
+            mascotaService.save(mascota, cliente1.get());
+        }
+        return "redirect:/listarMascotas/"+cedula_cliente;
+    }
+
+    @PostMapping("/actualizarMascota/{id}")
+    public String actualizarMascota(@PathVariable int id, @Valid Mascota mascota, Model model){
+
+        Optional<Mascota> mascota1 = mascotaService.listarId(id);
+        if (mascota1.isPresent()){
+            int cedulaCliente = mascota1.get().getCliente().getCedula();
+            mascotaService.update(mascota);
+            return "redirect:/listarMascotas/"+cedulaCliente;
+        }
+        return "redirect:/menuMedico";
     }
 
     @GetMapping("/editarMascota/{id}")
     public String editarMascota(@PathVariable int id, Model model){
         Optional<Mascota> mascota = mascotaService.listarId(id);
-        model.addAttribute("mascota",mascota);
-        return "mascota/viewMedico/formMascota";
+        model.addAttribute("mascota",mascota.get());
+        return "mascota/viewMedico/formActualizarMascota";
     }
 
     @GetMapping("/eliminarMascota/{id}")

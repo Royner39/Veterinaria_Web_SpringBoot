@@ -13,7 +13,8 @@ public interface IMascotaService {
     List<Mascota> listar();
     List<Mascota> listarByCliente(Cliente cliente);
     Optional<Mascota> listarId(int id);
-    int save(Mascota mascota);
-    void delete(int id);
+    boolean update(Mascota mascota);
+    boolean save(Mascota mascota, Cliente cliente);
+    boolean delete(int id);
 
 }

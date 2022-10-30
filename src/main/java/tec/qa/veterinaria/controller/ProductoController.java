@@ -51,7 +51,7 @@ public class ProductoController {
     @GetMapping("/editarProducto/{id}")
     public String editarProducto(@PathVariable int id, Model model){
         Optional<Producto> producto = productoService.listarId(id);
-        model.addAttribute("mascota",producto);
+        model.addAttribute("producto",producto);
         return "producto/viewMedico/formProducto";
     }
 

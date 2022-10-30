@@ -1,7 +1,6 @@
 package tec.qa.veterinaria.model;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,7 +15,7 @@ public class Mascota {
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "fecha_nacimiento")
-    private Date fechaNacimiento;
+    private String fechaNacimiento;
     @Column(name = "sexo")
     private String sexo;
     @OneToOne
@@ -32,7 +31,7 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(int id, String especie, String nombre, Date fechaNacimiento, String sexo, Expediente expediente, Cliente cliente, List<Consulta> consultas) {
+    public Mascota(int id, String especie, String nombre, String fechaNacimiento, String sexo, Expediente expediente, Cliente cliente, List<Consulta> consultas) {
         this.id = id;
         this.especie = especie;
         this.nombre = nombre;
@@ -67,11 +66,11 @@ public class Mascota {
         this.nombre = nombre;
     }
 
-    public Date getFechaNacimiento() {
+    public String getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(String fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

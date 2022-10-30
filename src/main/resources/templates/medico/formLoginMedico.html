@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>Veterinaria</title>
@@ -16,17 +16,24 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label>Id</label>
-                        <input type="text" th:name="id" class="form-control">
+                        <br>
+                        <label>
+                            <input type="text" th:name="id" class="form-control">
+                        </label>
                     </div>
+                    <br>
                     <div class="form-group">
                         <label>Contraseña</label>
-                        <input type="password" th:name="password" class="form-control">
+                        <br>
+                        <label>
+                            <input type="password" th:name="password" class="form-control">
+                        </label>
                     </div>
 
                 </div>
                 <div class="card-footer">
                     <input type="submit" value="Iniciar Sesión" class="btn btn-success">
-                    <a th:href="@{/nuevoMedico}" class="btn btn-secondary">Registrarse</a>                </div>
+                     <a th:href="@{/nuevoMedico}" class="btn btn-secondary">Registrarse</a>                </div>
             </div>
         </form>
         <br>

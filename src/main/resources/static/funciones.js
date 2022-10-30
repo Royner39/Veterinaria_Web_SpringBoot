@@ -23,7 +23,7 @@ function eliminarCliente(cedula){
             }
         });
 }
-function eliminarMascota(id_mascota) {
+function eliminarMascota(id_mascota, cedula_cliente) {
     swal({
         title: "Está seguro que desea eliminar esta mascota?",
         text: "Una vez eliminada, no podrá recuperar la información relacionada!",
@@ -43,7 +43,7 @@ function eliminarMascota(id_mascota) {
                 swal("Poof! La mascota se ha eliminado correctamente!", {
                     icon: "success",
                 }).then((OK) => {
-                    location.href = "/listarMascotas";
+                    location.href = "/listarMascotas/"+cedula_cliente;
                 });
             } else {
                 swal("No se ha eliminado la mascota!");
@@ -86,7 +86,7 @@ function eliminarProducto(id_producto){
         .then((OK) => {
             if (OK) {
                 $.ajax(
-                    {url:"/eliminarMedico/"+id_producto,
+                    {url:"/eliminarProducto/"+id_producto,
                         success: function (res){
                             console.log(res);
                         }});

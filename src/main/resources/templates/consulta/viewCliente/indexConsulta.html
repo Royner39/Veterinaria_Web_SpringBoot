@@ -7,29 +7,22 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Mis Mascotas</h1>
+    <h1>Lista de Consultas</h1>
+    <a th:href="@{/nuevaConsulta}" class="btn btn-primary">Nuevo</a>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
-            <td>Nombre</td>
-            <td>Especie</td>
-            <td>Sexo</td>
-            <td>Fecha Nacimiento</td>
-            <td>Acciones</td>
+            <td>Descripción</td>
+            <td>Fecha</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mascota:${mascotas}">
-            <td th:text="${mascota.id}"></td>
-            <td th:text="${mascota.nombre}"></td>
-            <td th:text="${mascota.especie}"></td>
-            <td th:text="${mascota.sexo}"></td>
-            <td th:text="${mascota.fechaNacimiento}"></td>
-            <td>
-                <a th:href="@{/verProductos/}+${mascota.id}" class="btn btn-secondary">Comprar Productos</a>
-                <a th:href="@{/nuevaConsulta/}+${mascota.id}" class= "btn btn-secondary">Realizar Consulta</a>
-            </td>
+        <tr th:each="consulta:${consultas}">
+            <td th:text="${consulta.id}"></td>
+            <td th:text="${consulta.descripcion}"></td>
+            <td th:text="${consulta.fecha}"></td>
+
         </tr>
         </tbody>
 

@@ -7,35 +7,30 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Mis Mascotas</h1>
+    <h1>Lista de Expedientes</h1>
+    <a th:href="@{/nuevoExpediente}" class="btn btn-primary">Nuevo</a>
     <table class="table">
         <thead>
         <tr>
             <td>Id</td>
-            <td>Nombre</td>
-            <td>Especie</td>
-            <td>Sexo</td>
-            <td>Fecha Nacimiento</td>
+            <td>Mascota</td>
             <td>Acciones</td>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="mascota:${mascotas}">
-            <td th:text="${mascota.id}"></td>
-            <td th:text="${mascota.nombre}"></td>
-            <td th:text="${mascota.especie}"></td>
-            <td th:text="${mascota.sexo}"></td>
-            <td th:text="${mascota.fechaNacimiento}"></td>
+        <tr th:each="expediente:${expedientes}">
+            <td th:text="${expediente.id}"></td>
+            <td th:text="${expediente.mascota.nombre}"></td>
             <td>
-                <a th:href="@{/verProductos/}+${mascota.id}" class="btn btn-secondary">Comprar Productos</a>
-                <a th:href="@{/nuevaConsulta/}+${mascota.id}" class= "btn btn-secondary">Realizar Consulta</a>
+                <a th:href="@{/editarExpediente/}+${expediente.id}" class="btn btn-warning">Editar</a>
+                <a th:onclick="eliminarExpediente([[${expediente.id}]])" class= "btn btn-danger">Eliminar</a>
             </td>
         </tr>
         </tbody>
 
     </table>
     <br><br><br><br>
-    <a th:href="@{/veterinaria}" class="btn btn-danger">Cerrar Sesión</a>
+    <a th:href="@{/veterinaria}" class="btn btn-primary btn-lg">Menu Principal</a>
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
