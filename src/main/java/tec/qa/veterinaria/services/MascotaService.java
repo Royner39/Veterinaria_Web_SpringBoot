@@ -54,16 +54,13 @@ public class MascotaService implements IMascotaService {
     }
 
     @Override
-    public boolean save(Mascota m, Cliente c) {
+    public boolean save(Mascota mascota) {
         try {
-            if (c != null) {
-                Mascota mascota = data.save(m);
+            if (mascota != null) {
+                data.save(mascota);
 
-                if (mascota != null){
-                    return true;
-                }
+                return true;
             }
-            return false;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -8,7 +8,7 @@
 <body>
 <div class="container mt-4">
     <div class="col-sm-6">
-        <form th:action="@{/guardarExpediente}" th:object="${expediente}" method="POST">
+        <form th:action="@{/guardarExpediente/}+${mascota.id}" th:object="${expediente}" method="POST">
             <div class="card">
                 <div class="card-header">
                     <h3>Módulo Expediente</h3>

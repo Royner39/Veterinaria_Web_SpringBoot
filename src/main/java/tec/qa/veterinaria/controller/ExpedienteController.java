@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import tec.qa.veterinaria.interfaceServices.IClienteService;
 import tec.qa.veterinaria.interfaceServices.IExpedienteService;
 import tec.qa.veterinaria.interfaceServices.IMascotaService;
+import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Expediente;
 import tec.qa.veterinaria.model.Mascota;
 
@@ -27,6 +27,17 @@ public class ExpedienteController {
     @Autowired
     private IMascotaService mascotaService;
 
+    @GetMapping("/verExpediente/{id_mascota}")
+    public String listarExpedienteCliente(@PathVariable int id_mascota, Model model){
+        Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
+        if (mascota.isPresent()) {
+            Expediente expediente = expedienteService.listarByMascota(mascota.get());
+            model.addAttribute("expediente",expediente);
+            return "expediente/viewCliente/indexExpediente";
+        }
+        return "redirect:/error";
+    }
+
     @GetMapping("/listarExpedientes")
     public String listarExpedientesMedico(Model model) {
         List<Expediente> expedientes = expedienteService.listar();
@@ -34,19 +45,27 @@ public class ExpedienteController {
         return "expediente/viewMedico/indexExpediente";
     }
 
-    @GetMapping("/nuevoExpediente")
-    public String agregarExpediente(Model model) {
-        model.addAttribute("expediente", new Expediente());
-        return "expediente/viewMedico/formExpediente";
+    @GetMapping("/nuevoExpediente/{id_mascota}")
+    public String agregarExpediente(@PathVariable int id_mascota, Model model) {
+        Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
+        if (mascota.isPresent()) {
+            model.addAttribute("expediente", new Expediente());
+            model.addAttribute("mascota", mascota.get());
+            return "expediente/viewMedico/formExpediente";
+        }
+        return "redirect:/error";
     }
 
-    @PostMapping("/guardarExpediente/{id}")
-    public String guardarExpediente(@PathVariable int id, @Valid Expediente expediente, Model model) {
-        Optional<Mascota> mascota = mascotaService.listarId(id);
-        if (mascota.isPresent()){
-            expedienteService.save(expediente, mascota.get());
+    @PostMapping("/guardarExpediente/{id_mascota}")
+    public String guardarExpediente(@PathVariable int id_mascota, @Valid Expediente expediente, Model model) {
+        Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
+        if (mascota.isPresent()) {
+            if (expedienteService.save(expediente)) {
+                mascota.get().setExpediente(expediente);
+                return "redirect:/listarMascotas/"+mascota.get().getCliente().getCedula();
+            }
         }
-        return "redirect:/listarExpedientes";
+        return "redirect:/error";
     }
 
     @GetMapping("/editarExpediente/{id}")

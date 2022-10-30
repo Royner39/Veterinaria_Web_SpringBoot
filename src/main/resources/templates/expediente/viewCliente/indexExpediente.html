@@ -7,8 +7,7 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1>Lista de Expedientes</h1>
-    <a th:href="@{/nuevoExpediente}" class="btn btn-primary">Nuevo</a>
+    <h1>Mi Expediente</h1>
     <table class="table">
         <thead>
         <tr>
@@ -18,11 +17,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="expediente:${expedientes}">
-            <td th:text="${expediente.id}"></td>
-            <td th:text="${expediente.mascota.nombre}"></td>
+        <tr th:each="expediente1:${expediente}">
+            <td th:text="${expediente1.id}"></td>
+            <td th:text="${expediente1.mascota.nombre}"></td>
             <td>
-                <a th:href="@{/verExpediente/}+${mascota.id}" class="btn btn-warning">Ver Consultas</a>
+                <a th:href="@{/verConsultas/}+${mascota.id}" class="btn btn-warning">Ver Consultas</a>
             </td>
         </tr>
         </tbody>

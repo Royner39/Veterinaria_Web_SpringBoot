@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface IExpedienteService {
     List<Expediente> listar();
     Optional<Expediente> listarId(int id);
-    boolean save(Expediente expediente, Mascota mascota);
+    Expediente listarByMascota(Mascota mascota);
+    boolean save(Expediente expediente);
     boolean delete(int id);
 }

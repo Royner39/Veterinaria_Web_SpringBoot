@@ -14,7 +14,7 @@ public interface IMascotaService {
     List<Mascota> listarByCliente(Cliente cliente);
     Optional<Mascota> listarId(int id);
     boolean update(Mascota mascota);
-    boolean save(Mascota mascota, Cliente cliente);
+    boolean save(Mascota mascota);
     boolean delete(int id);
 
 }

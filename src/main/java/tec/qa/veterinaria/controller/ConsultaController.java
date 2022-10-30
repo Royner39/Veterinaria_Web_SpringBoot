@@ -36,14 +36,14 @@ public class ConsultaController {
         return "consulta/viewMedico/indexConsulta";
     }
 
-    @GetMapping("/nuevaConsulta")
-    public String agregarConsulta(Model model){
+    @GetMapping("/nuevaConsulta/{id_mascota}")
+    public String agregarConsulta(@PathVariable int id_mascota, Model model){
         model.addAttribute("consulta",new Consulta());
         return "consulta/viewMedico/formConsulta";
     }
 
-    @PostMapping("/guardarConsulta")
-    public String guardarConsulta(@Valid Consulta consulta, Model model){
+    @PostMapping("/guardarConsulta/{id_mascota}")
+    public String guardarConsulta(@PathVariable int id_mascota, @Valid Consulta consulta, Model model){
         consultaService.save(consulta);
         return "redirect:/listarConsultas";
     }

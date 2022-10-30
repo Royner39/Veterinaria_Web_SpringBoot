@@ -22,26 +22,27 @@ public class ExpedienteService implements IExpedienteService {
     }
 
     @Override
+    public Expediente listarByMascota(Mascota mascota) {
+        return mascota.getExpediente();
+    }
+
+    @Override
     public Optional<Expediente> listarId(int id) {
         return data.findById(id);
     }
 
     @Override
-    public boolean save(Expediente expediente, Mascota mascota) {
+    public boolean save(Expediente expediente) {
         try {
-            if (mascota != null) {
-                mascota.setExpediente(expediente);
-                expediente.setMascota(mascota);
-                Expediente expediente1 = data.save(expediente);
-                if (expediente1 != null){
+                if (expediente != null) {
+                    data.save(expediente);
+
                     return true;
                 }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
             return false;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
 
     }
 

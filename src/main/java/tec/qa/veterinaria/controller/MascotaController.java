@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tec.qa.veterinaria.interfaceServices.IClienteService;
+import tec.qa.veterinaria.interfaceServices.IExpedienteService;
 import tec.qa.veterinaria.interfaceServices.IMascotaService;
 import tec.qa.veterinaria.model.Cliente;
+import tec.qa.veterinaria.model.Expediente;
 import tec.qa.veterinaria.model.Mascota;
 
 import javax.validation.Valid;
@@ -26,6 +28,9 @@ public class MascotaController {
 
     @Autowired
     private IClienteService clienteService;
+
+    @Autowired
+    private IExpedienteService expedienteService;
 
 
     @GetMapping("/verMascotas/{cedula_cliente}")
@@ -58,9 +63,11 @@ public class MascotaController {
         Optional<Cliente> cliente1 = clienteService.listarId(cedula_cliente);
         if (cliente1.isPresent()) {
             cliente1.get().setMascotas(mascota);
-            mascotaService.save(mascota, cliente1.get());
+            if (mascotaService.save(mascota)) {
+                return "redirect:/nuevoExpediente/"+mascota.getId();
+            }
         }
-        return "redirect:/listarMascotas/"+cedula_cliente;
+        return "redirect:/error";
     }
 
     @PostMapping("/actualizarMascota/{id}")
@@ -69,10 +76,12 @@ public class MascotaController {
         Optional<Mascota> mascota1 = mascotaService.listarId(id);
         if (mascota1.isPresent()){
             int cedulaCliente = mascota1.get().getCliente().getCedula();
-            mascotaService.update(mascota);
-            return "redirect:/listarMascotas/"+cedulaCliente;
+            if (mascotaService.update(mascota)){
+                return "redirect:/listarMascotas/"+cedulaCliente;
+            }
+            return "redirect:/menuMedico";
         }
-        return "redirect:/menuMedico";
+        return "redirect:/error";
     }
 
     @GetMapping("/editarMascota/{id}")
@@ -84,8 +93,10 @@ public class MascotaController {
 
     @GetMapping("/eliminarMascota/{id}")
     public String eliminarMascota(@PathVariable int id,Model model){
-        mascotaService.delete(id);
-        return "redirect:/listarMascotas";
+        if (mascotaService.delete(id)) {
+            return "redirect:/listarMascotas";
+        }
+        return "redirect:/error";
     }
 
 }
