@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import tec.qa.veterinaria.model.Expediente;
+import tec.qa.veterinaria.model.Mascota;
 
 import java.util.List;
 
@@ -18,14 +19,11 @@ class ExpedienteServiceTest extends ExpedienteService {
 
     @Autowired
     private ExpedienteService expedienteService;
-
     private Expediente expedientePrueba = new Expediente();
-
     @BeforeEach
     void setUp() {
         expedientePrueba.setId(1);
         expedienteService.save(expedientePrueba);
-
     }
     @AfterEach
     void tearDown(){
@@ -75,8 +73,16 @@ class ExpedienteServiceTest extends ExpedienteService {
         Assertions.assertTrue(deleteSuccess);
     }
 
+    //REVISAR ESTE TEST
     @Test
     void testListarByMascota() {
-        fail("Not yet implemented");
+        Mascota mascota1 = new Mascota();
+        mascota1.setId(2);
+        mascota1.setFechaNacimiento("2020-01-01");
+        mascota1.setNombre("Mascota1");
+        mascota1.setEspecie("Raza1");
+        expedientePrueba.setMascota(mascota1);
+        Expediente expediente = expedienteService.listarByMascota(mascota1);
+        Assertions.assertNotNull(expediente);
     }
 }

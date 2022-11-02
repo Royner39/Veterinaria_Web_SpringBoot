@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import tec.qa.veterinaria.model.Cliente;
 import tec.qa.veterinaria.model.Mascota;
 
 import java.sql.Date;
@@ -87,8 +88,14 @@ class MascotaServiceTest extends MascotaService {
         Assertions.assertTrue(deleteSuccess);
     }
 
+    //REVISAR ESTE TEST
     @Test
     void testListarByCliente() {
-        fail("Not yet implemented");
+        Cliente cliente1 = new Cliente();
+        cliente1.setNombre("TEST");
+        cliente1.setEmail("test@vet.com");
+        cliente1.setPassword("test123");
+        cliente1.setMascotas(mascotaPrueba);
+        Assertions.assertTrue(mascotaService.listarByCliente(cliente1).contains(mascotaPrueba));
     }
 }
