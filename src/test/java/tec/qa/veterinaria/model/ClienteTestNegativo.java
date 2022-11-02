@@ -4,49 +4,49 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ClienteTest extends Cliente {
+class ClienteTestNegativo extends Cliente {
 
     Cliente cliente = new Cliente();
 
 
     @Test
-    void testCedula() {
+    void testNegativoCedula() {
         cliente.setCedula(155223654);
-        assertEquals(155223654, cliente.getCedula());
+        assertEquals(15523654, cliente.getCedula());
     }
 
     @Test
-    void testNombre() {
+    void testNegativoNombre() {
         cliente.setNombre("John Doe");
         assertEquals("John Doe", cliente.getNombre());
     }
 
     @Test
-    void testTelefono() {
+    void testNegativoTelefono() {
         cliente.setTelefono(465431321);
         assertEquals(465431321, cliente.getTelefono());
     }
 
     @Test
-    void testEmail() {
-        cliente.setEmail("aaa@gmail.com");
+    void testNegativoEmail() {
+        cliente.setEmail("aaa(a)gmail.com");
         assertEquals("aaa@gmail.com", cliente.getEmail());
     }
 
     @Test
-    void testPassword() {
-        cliente.setPassword("contrasena123");
+    void testNegativoPassword() {
+        cliente.setPassword("123456");
         assertEquals("contrasena123", cliente.getPassword());
     }
 
     @Test
-    void testMascotas() {
+    void testNegativoMascotas() {
         Mascota machita = new Mascota();
         machita.setNombre("Machita");
         machita.setEspecie("Gato");
-        machita.setId(1);
+        machita.setId(-2142343241);
         cliente.setMascotas(machita);
         assertEquals(List.of(machita), cliente.getMascotas());
     }
