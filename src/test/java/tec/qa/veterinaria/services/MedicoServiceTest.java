@@ -72,11 +72,11 @@ class MedicoServiceTest extends MedicoService {
         medico1.setNombre("SAVETEST");
         medico1.setEmail("test@vet.com");
         medico1.setPassword("test123");
-        boolean saveSucces = medicoService.save(medico1);
-        if (saveSucces) {
+        boolean saveSuccess = medicoService.save(medico1);
+        if (saveSuccess) {
             medicoService.delete(medico1.getId());
         }
-        Assertions.assertTrue(saveSucces);
+        Assertions.assertTrue(saveSuccess);
     }
 
     @Test
@@ -88,7 +88,7 @@ class MedicoServiceTest extends MedicoService {
                 id = medico.getId();
             }
         }
-        boolean deleteSucces = medicoService.delete(id);
-        Assertions.assertTrue(deleteSucces);
+        boolean deleteSuccess = medicoService.delete(id);
+        Assertions.assertTrue(deleteSuccess);
     }
 }
