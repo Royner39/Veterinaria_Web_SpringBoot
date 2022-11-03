@@ -54,13 +54,5 @@ class ConsultaTest extends Consulta {
         assertEquals(mascota, consulta.getMascota());
     }
 
-    @Test
-    void testFacturas() {
-        Facturacion facturacion = new Facturacion();
-        facturacion.setId(1);
-        consulta.setFacturas(List.of(facturacion));
-        assertEquals(List.of(facturacion), consulta.getFacturas());
-
-    }
 
 }

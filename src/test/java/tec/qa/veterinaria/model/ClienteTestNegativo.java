@@ -41,13 +41,5 @@ class ClienteTestNegativo extends Cliente {
         assertEquals("contrasena123", cliente.getPassword());
     }
 
-    @Test
-    void testNegativoMascotas() {
-        Mascota machita = new Mascota();
-        machita.setNombre("Machita");
-        machita.setEspecie("Gato");
-        machita.setId(-2142343241);
-        cliente.setMascotas(machita);
-        assertEquals(List.of(machita), cliente.getMascotas());
-    }
+
 }
