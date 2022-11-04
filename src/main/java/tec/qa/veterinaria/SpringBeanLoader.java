@@ -1,7 +1,11 @@
 package tec.qa.veterinaria;
 
 import org.springframework.context.ApplicationContext;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 public class SpringBeanLoader {
 
     private static ApplicationContext applicationContext;

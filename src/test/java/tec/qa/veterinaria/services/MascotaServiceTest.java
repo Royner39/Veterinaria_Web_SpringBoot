@@ -13,7 +13,11 @@ import java.sql.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @SpringBootTest
 class MascotaServiceTest extends MascotaService {
 

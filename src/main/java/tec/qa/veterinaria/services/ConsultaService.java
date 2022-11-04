@@ -8,23 +8,44 @@ import tec.qa.veterinaria.model.Consulta;
 
 import java.util.List;
 import java.util.Optional;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @Service
 public class ConsultaService implements IConsultaService {
+
+    //Inyección de dependencias
     @Autowired
     private IConsulta data;
 
+    /*
+    Parametros: N/A
+    Retorno: Lista de consultas
+    Descripción: Método que retorna una lista de consultas
+     */
     @Override
     public List<Consulta> listar() {
 
         return (List<Consulta>)data.findAll();
     }
 
+    /*
+    Parametros: Id de la consulta
+    Retorno: Consulta
+    Descripción: Método que retorna una consulta
+     */
     @Override
     public Optional<Consulta> listarId(int id) {
         return data.findById(id);
     }
 
+    /*
+    Parametros: Consulta
+    Retorno: Booleano
+    Descripción: Método que guarda una consulta
+     */
     @Override
     public boolean save(Consulta consulta) {
 
@@ -41,7 +62,11 @@ public class ConsultaService implements IConsultaService {
         return false;
     }
 
-
+    /*
+    Parametros: Id de la consulta
+    Retorno: Booleano
+    Descripción: Método que elimina una consulta
+     */
     @Override
     public boolean delete(int id) {
         try {

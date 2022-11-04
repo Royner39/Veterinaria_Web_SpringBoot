@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 class ClienteTestNegativo extends Cliente {
 
     Cliente cliente = new Cliente();

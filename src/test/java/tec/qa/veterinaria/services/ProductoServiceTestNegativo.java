@@ -10,7 +10,11 @@ import tec.qa.veterinaria.model.Producto;
 
 import java.util.List;
 
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @SpringBootTest
 class ProductoServiceTestNegativo extends ProductoService {
 

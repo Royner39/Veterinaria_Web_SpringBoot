@@ -9,7 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import tec.qa.veterinaria.model.Cliente;
 
 import java.util.List;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @SpringBootTest
 class ClienteServiceTestNegativo extends ClienteService {
 

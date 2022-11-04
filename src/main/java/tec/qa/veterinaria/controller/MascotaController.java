@@ -18,21 +18,39 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @Controller
 @RequestMapping
 public class MascotaController {
 
+    /*
+    Se crea una instancia de la interfaz IMascotaService para poder utilizar los metodos.
+     */
     @Autowired
     private IMascotaService mascotaService;
 
+    /*
+    Se crea una instancia de la interfaz IClienteService para poder utilizar los metodos.
+     */
     @Autowired
     private IClienteService clienteService;
 
+    /*
+    Se crea una instancia de la interfaz IExpedienteService para poder utilizar los metodos.
+     */
     @Autowired
     private IExpedienteService expedienteService;
 
-
+    /*
+    Parametros: modelo, cédula del cliente
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listado de mascotas
+    asociadas a un cliente.
+     */
     @GetMapping("/verMascotas/{cedula_cliente}")
     public String listarMascotasCliente(@PathVariable int cedula_cliente, Model model){
         Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
@@ -41,6 +59,12 @@ public class MascotaController {
         return "mascota/viewCliente/indexMascota";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de registro de mascotas
+    asociadas a un medico.
+     */
     @GetMapping("/listarMascotas/{cedula_cliente}")
     public String listarMascotasMedico(@PathVariable int cedula_cliente, Model model){
         Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
@@ -50,6 +74,11 @@ public class MascotaController {
         return "mascota/viewMedico/indexMascota";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de registro de mascotas
+     */
     @GetMapping("/nuevaMascota/{cedula_cliente}")
     public String agregarMascota(@PathVariable int cedula_cliente,Model model){
         Optional<Cliente> cliente = clienteService.listarId(cedula_cliente);
@@ -58,6 +87,11 @@ public class MascotaController {
         return "mascota/viewMedico/formMascota";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente, mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de registro de mascotas
+     */
     @PostMapping("/guardarMascota/{cedula_cliente}")
     public String guardarMascota(@PathVariable int cedula_cliente, @Valid Mascota mascota, Model model){
         Optional<Cliente> cliente1 = clienteService.listarId(cedula_cliente);
@@ -70,6 +104,12 @@ public class MascotaController {
         return "redirect:/error";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente, mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listado de mascotas
+    posterior a la actualizacion de una mascota.
+     */
     @PostMapping("/actualizarMascota/{id}")
     public String actualizarMascota(@PathVariable int id, @Valid Mascota mascota, Model model){
 
@@ -84,6 +124,12 @@ public class MascotaController {
         return "redirect:/error";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de edicion
+    de informacion sobre mascotas
+     */
     @GetMapping("/editarMascota/{id}")
     public String editarMascota(@PathVariable int id, Model model){
         Optional<Mascota> mascota = mascotaService.listarId(id);
@@ -91,6 +137,12 @@ public class MascotaController {
         return "mascota/viewMedico/formActualizarMascota";
     }
 
+    /*
+    Parametros: modelo, cédula del cliente
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listado de mascotas
+    posterior a la eliminacion de una mascota.
+     */
     @GetMapping("/eliminarMascota/{id}")
     public String eliminarMascota(@PathVariable int id,Model model){
         if (mascotaService.delete(id)) {

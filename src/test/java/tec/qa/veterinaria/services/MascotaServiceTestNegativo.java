@@ -11,7 +11,11 @@ import tec.qa.veterinaria.model.Mascota;
 
 import java.sql.Date;
 import java.util.List;
-
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 @SpringBootTest
 class MascotaServiceTestNegativo extends MascotaService {
 

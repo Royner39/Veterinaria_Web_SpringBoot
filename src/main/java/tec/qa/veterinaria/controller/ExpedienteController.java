@@ -16,17 +16,34 @@ import tec.qa.veterinaria.model.Mascota;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+/*
+Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
+Clase: Aseguramiento de la Calidad de Software
+ITCR 2022
+ */
 
 @Controller
 @RequestMapping
 public class ExpedienteController {
 
+    /*
+    Se crea una instancia de la interfaz IExpedienteService para poder utilizar los metodos.
+     */
     @Autowired
     private IExpedienteService expedienteService;
 
+    /*
+    Se crea una instancia de la interfaz IMascotaService para poder utilizar los metodos.
+     */
     @Autowired
     private IMascotaService mascotaService;
 
+    /*
+    Parametros: modelo, id de la mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listado de expedientes asociados
+    a un cliente.
+     */
     @GetMapping("/verExpediente/{id_mascota}")
     public String listarExpedienteCliente(@PathVariable int id_mascota, Model model){
         Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
@@ -38,6 +55,12 @@ public class ExpedienteController {
         return "redirect:/error";
     }
 
+    /*
+    Parametros: modelo
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listado de expedientes
+    asociados a un medico.
+     */
     @GetMapping("/listarExpedientes")
     public String listarExpedientesMedico(Model model) {
         List<Expediente> expedientes = expedienteService.listar();
@@ -45,6 +68,11 @@ public class ExpedienteController {
         return "expediente/viewMedico/indexExpediente";
     }
 
+    /*
+    Parametros: modelo, id de la mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de creacion de un expediente.
+     */
     @GetMapping("/nuevoExpediente/{id_mascota}")
     public String agregarExpediente(@PathVariable int id_mascota, Model model) {
         Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
@@ -56,6 +84,12 @@ public class ExpedienteController {
         return "redirect:/error";
     }
 
+    /*
+    Parametros: modelo, id de la mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listar expedientes
+    despues de guardar de un expediente.
+     */
     @PostMapping("/guardarExpediente/{id_mascota}")
     public String guardarExpediente(@PathVariable int id_mascota, @Valid Expediente expediente, Model model) {
         Optional<Mascota> mascota = mascotaService.listarId(id_mascota);
@@ -68,6 +102,11 @@ public class ExpedienteController {
         return "redirect:/error";
     }
 
+    /*
+    Parametros: modelo, id de la mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de editar un expediente.
+     */
     @GetMapping("/editarExpediente/{id}")
     public String editarExpediente(@PathVariable int id, Model model) {
         Optional<Expediente> expediente = expedienteService.listarId(id);
@@ -75,6 +114,12 @@ public class ExpedienteController {
         return "expediente/viewMedico/formExpediente";
     }
 
+    /*
+    Parametros: modelo, id de la mascota
+    Retorno: Direccion a nueva interfaz.
+    Descripción: Funcion que se encarga de redirigir a la interfaz de listar expedientes
+    despues de eliminar un expediente.
+     */
     @GetMapping("/eliminarExpediente/{id}")
     public String eliminarExpediente(@PathVariable int id, Model model) {
         expedienteService.delete(id);
