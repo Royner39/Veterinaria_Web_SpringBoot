@@ -21,9 +21,6 @@ ITCR 2022
 @SpringBootTest
 class MascotaServiceTest extends MascotaService {
 
-
-
-
     // Prueba la clase Mascota
     @Autowired
     private MascotaService mascotaService;
@@ -105,7 +102,7 @@ class MascotaServiceTest extends MascotaService {
         Assertions.assertTrue(deleteSuccess);
     }
 
-    //REVISAR ESTE TEST
+
     /*
     Prueba que verifica que la lista por cliente contenga el cliente
      */

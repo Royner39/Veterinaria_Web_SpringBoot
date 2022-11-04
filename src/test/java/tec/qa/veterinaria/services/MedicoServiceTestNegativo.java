@@ -18,11 +18,13 @@ ITCR 2022
 @SpringBootTest
 class MedicoServiceTestNegativo extends MedicoService {
 
+    //Prueba de la clase Medico
     @Autowired
     private MedicoService medicoService;
 
     private  Medico medicoPrueba = new Medico();
 
+    //Antes de cada prueba va a crear un medico
     @BeforeEach
     void setUp() {
 
@@ -32,17 +34,24 @@ class MedicoServiceTestNegativo extends MedicoService {
         medicoService.save(medicoPrueba);
 
     }
+    //Despues de cada prueba va a eliminar el medico
     @AfterEach
     void tearDown(){
         medicoService.delete(medicoPrueba.getId());
     }
 
+    /*
+    Prueba que verifica que la lista de medicos
+     */
     @Test
     void testNegativoListar() {
         List<Medico> medicos = medicoService.listar();
         Assertions.assertNotNull(medicos);
     }
 
+    /*
+    Prueba que verifica que la lista de medicos por id
+     */
     @Test
     void testNegativoListarId() {
         int id = 0;
@@ -56,6 +65,9 @@ class MedicoServiceTestNegativo extends MedicoService {
         Assertions.assertNotNull(medico);
     }
 
+    /*
+    Prueba que verifica el medico
+     */
     @Test
     void testNegativoLogin() {
         int id = 0;
@@ -70,6 +82,9 @@ class MedicoServiceTestNegativo extends MedicoService {
         Assertions.assertTrue(loginSucces);
     }
 
+    /*
+    Prueba que verifica que se pueda guardar un medico
+     */
     @Test
     void testNegativoSave() {
         Medico medico1 = new Medico();
@@ -83,6 +98,9 @@ class MedicoServiceTestNegativo extends MedicoService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que verifica que se pueda borrar un medico
+     */
     @Test
     void testNegativoDelete() {
         int id = 0;

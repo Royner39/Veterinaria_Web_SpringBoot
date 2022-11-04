@@ -12,14 +12,23 @@ ITCR 2022
  */
 class ExpedienteTestNegativo extends Expediente {
 
-
+    //Test para verificar que se pueda crear un expediente
     Expediente expediente = new Expediente();
+
+    /*
+    Test
+    Descrición: Gets y Sets de ID
+     */
     @Test
     void testNegativoId() {
         expediente.setId(1);
         assertEquals(1, expediente.getId());
     }
 
+    /*
+    Test
+    Descrición: Gets y Sets de Mascota
+     */
     @Test
     void testNegativoMascota() {
         Mascota mascota = new Mascota();
@@ -28,6 +37,10 @@ class ExpedienteTestNegativo extends Expediente {
         assertEquals(mascota, expediente.getMascota());
     }
 
+    /*
+    Test
+    Descrición: Gets y Sets de Consulta
+     */
     @Test
     void testNegativoConsultas() {
         Consulta consulta = new Consulta();

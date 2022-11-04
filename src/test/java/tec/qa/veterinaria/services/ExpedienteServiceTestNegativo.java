@@ -19,26 +19,36 @@ ITCR 2022
 @SpringBootTest
 class ExpedienteServiceTestNegativo extends ExpedienteService {
 
-
+    //Prueba la clase de Expediente
     @Autowired
     private ExpedienteService expedienteService;
     private Expediente expedientePrueba = new Expediente();
+
+    //Se ejecuta antes de cada prueba para crear un expediente
     @BeforeEach
     void setUp() {
         expedientePrueba.setId(1);
         expedienteService.save(expedientePrueba);
     }
+
+    //Se ejecuta después de cada prueba para eliminar el expediente
     @AfterEach
     void tearDown(){
         expedienteService.delete(expedientePrueba.getId());
     }
 
+    /*
+    Prueba que la lista de expedientes no sea nula
+     */
     @Test
     void testNegativoListar() {
         List<Expediente> expedientes = expedienteService.listar();
         Assertions.assertNull(expedientes);
     }
 
+    /*
+   Prueba que el expediente no sea nulo cuando se busca por ID
+    */
     @Test
     void testNegativoListarId() {
         int id = 0;
@@ -52,6 +62,9 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
         Assertions.assertNull(expediente);
     }
 
+    /*
+    Prueba que el expediente se haya guardado correctamente
+     */
     @Test
     void testNegativoSave() {
         Expediente expediente1 = new Expediente();
@@ -63,6 +76,9 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
         Assertions.assertFalse(saveSuccess);
     }
 
+    /*
+    Prueba que el expediente se haya eliminado correctamente
+     */
     @Test
     void testNegativoDelete() {
         int id = 0;
@@ -76,7 +92,9 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
         Assertions.assertFalse(deleteSuccess);
     }
 
-    //REVISAR ESTE testNegativo
+    /*
+   Prueba que se pueda listar un expediente por mascota
+    */
     @Test
     void testNegativoListarByMascota() {
         Mascota mascota1 = new Mascota();

@@ -18,13 +18,13 @@ ITCR 2022
 @SpringBootTest
 class ProductoServiceTestNegativo extends ProductoService {
 
-
-
+    //Prueba de la clase Producto
     @Autowired
     private ProductoService productoService;
 
     private Producto productoPrueba = new Producto();
 
+    //Antes de cada prueba va a crear un producto
     @BeforeEach
     void setUp() {
         productoPrueba.setId(1);
@@ -33,17 +33,24 @@ class ProductoServiceTestNegativo extends ProductoService {
         productoPrueba.setStock(10);
         productoService.save(productoPrueba);
     }
+    //Despues de cada prueba va a eliminar el producto
     @AfterEach
     void tearDown(){
         productoService.delete(productoPrueba.getId());
     }
 
+    /*
+    Prueba que verifica la lista de productos
+     */
     @Test
     void testNegativoListar() {
         List<Producto> productos = productoService.listar();
         Assertions.assertNotNull(productos);
     }
 
+    /*
+    Prueba que verifica la lista de productos por id
+     */
     @Test
     void testNegativoListarId() {
         int id = 0;
@@ -57,6 +64,9 @@ class ProductoServiceTestNegativo extends ProductoService {
         Assertions.assertNotNull(producto);
     }
 
+    /*
+    Verifica que el guardado de un producto
+     */
     @Test
     void testNegativoSave() {
         Producto producto1 = new Producto();
@@ -71,6 +81,9 @@ class ProductoServiceTestNegativo extends ProductoService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+   Prueba que verifica que el producto no se haya eliminado
+    */
     @Test
     void testNegativoDelete() {
         int id = 0;

@@ -19,15 +19,13 @@ ITCR 2022
 @SpringBootTest
 class MascotaServiceTestNegativo extends MascotaService {
 
-
-
-
-
+    // Prueba la clase Mascota
     @Autowired
     private MascotaService mascotaService;
 
     private Mascota mascotaPrueba = new Mascota();
 
+    //Se ejecuta antes de cada prueba y crea una mascota
     @BeforeEach
     void setUp() {
         Date fecha = new Date(2020, 10, 10);
@@ -38,17 +36,24 @@ class MascotaServiceTestNegativo extends MascotaService {
         mascotaService.save(mascotaPrueba);
 
     }
+    //Se ejecuta despues de cada prueba y elimina la mascota
     @AfterEach
     void tearDown(){
         mascotaService.delete(mascotaPrueba.getId());
     }
 
+    /*
+    Prueba que verifica que la lista de mascotas
+     */
     @Test
     void testNegativoListar() {
         List<Mascota> mascotas = mascotaService.listar();
         Assertions.assertNotNull(mascotas);
     }
 
+    /*
+    Prueba que verifica que la lista de mascotas por id
+     */
     @Test
     void testNegativoListarId() {
         int id = 0;
@@ -62,6 +67,9 @@ class MascotaServiceTestNegativo extends MascotaService {
         Assertions.assertNotNull(mascota);
     }
 
+    /*
+   Prueba que verifica que la mascota se guarde correctamente
+    */
     @Test
     void testNegativoSave() {
         Mascota mascota1 = new Mascota();
@@ -77,6 +85,9 @@ class MascotaServiceTestNegativo extends MascotaService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que verifica que la mascota se borre correctamente
+     */
     @Test
     void testNegativoDelete() {
         int id = 0;
@@ -90,7 +101,10 @@ class MascotaServiceTestNegativo extends MascotaService {
         Assertions.assertTrue(deleteSuccess);
     }
 
-    //REVISAR ESTE testNegativo
+
+    /*
+   Prueba que verifica que la lista por cliente contenga el cliente
+    */
     @Test
     void testNegativoListarByCliente() {
         Cliente cliente1 = new Cliente();

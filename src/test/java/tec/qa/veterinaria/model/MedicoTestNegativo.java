@@ -12,33 +12,53 @@ ITCR 2022
  */
 class MedicoTestNegativo extends Medico {
 
+    //Prueba de la clase Medico
     Medico medico = new Medico();
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Id
+     */
     @Test
     void testNegativoId() {
         medico.setId(1);
         assertEquals(1, medico.getId());
     }
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Nombre
+     */
     @Test
     void testNegativoNombre() {
         medico.setNombre("Juan");
         assertEquals("Juan", medico.getNombre());
     }
 
+    /*
+   Test
+   Descripción: Prueba de set y get de Email
+    */
     @Test
     void testNegativoEmail() {
         medico.setEmail("medico1@gmail.com");
         assertEquals("medico1@gmail.com", medico.getEmail());
     }
 
+    /*
+   Test
+   Descripción: Prueba de set y get de Password
+    */
     @Test
     void testNegativoPassword() {
         medico.setPassword("1234");
         assertEquals("1234", medico.getPassword());
     }
 
-
+    /*
+    Test
+    Descripción: Prueba de set y get de Consultas
+     */
     @Test
     void testNegativoConsultas() {
         Consulta consulta = new Consulta();

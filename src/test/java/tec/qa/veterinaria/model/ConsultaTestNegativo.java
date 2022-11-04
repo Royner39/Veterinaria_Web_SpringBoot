@@ -13,20 +13,33 @@ ITCR 2022
  */
 class ConsultaTestNegativo extends Consulta {
 
+    //Prueba de la clase Consulta
     Consulta consulta = new Consulta();
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Id
+    */
     @Test
     void testNegativoId() {
         consulta.setId(1);
         assertEquals(1, consulta.getId());
     }
 
+    /*
+   Test
+   Descripción: Prueba de set y get de Descipcion
+    */
     @Test
     void testNegativoDescripcion() {
         consulta.setDescripcion("Descripcion");
         assertEquals("Descripcion", consulta.getDescripcion());
     }
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Fecha
+     */
     @Test
     void testNegativoFecha() {
         Date fecha = new Date(2020, 10, 10);
@@ -34,6 +47,10 @@ class ConsultaTestNegativo extends Consulta {
         assertEquals(fecha, consulta.getFecha());
     }
 
+    /*
+   Test
+   Descripción: Prueba de set y get de Medico
+    */
     @Test
     void testNegativoMedico() {
         Medico medico = new Medico();
@@ -42,6 +59,10 @@ class ConsultaTestNegativo extends Consulta {
         assertEquals(medico, consulta.getMedico());
     }
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Expediente
+     */
     @Test
     void testNegativoExpediente() {
         Expediente expediente = new Expediente();
@@ -50,6 +71,10 @@ class ConsultaTestNegativo extends Consulta {
         assertEquals(expediente, consulta.getExpediente());
     }
 
+    /*
+    Test
+    Descripción: Prueba de set y get de Mascota
+     */
     @Test
     void testNegativoMascota() {
         Mascota mascota = new Mascota();

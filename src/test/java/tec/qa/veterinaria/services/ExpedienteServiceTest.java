@@ -91,7 +91,6 @@ class ExpedienteServiceTest extends ExpedienteService {
         Assertions.assertTrue(deleteSuccess);
     }
 
-    //REVISAR ESTE TEST
     /*
     Prueba que se pueda listar un expediente por mascota
      */

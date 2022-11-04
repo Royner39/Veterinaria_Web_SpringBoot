@@ -17,11 +17,13 @@ ITCR 2022
 @SpringBootTest
 class ClienteServiceTestNegativo extends ClienteService {
 
+    //Prueba de la clase Cliente
     @Autowired
     private ClienteService clienteService;
 
     private Cliente clientePrueba = new Cliente();
 
+    //Antes de cada prueba va a crear un cliente
     @BeforeEach
     void setUp() {
 
@@ -31,19 +33,26 @@ class ClienteServiceTestNegativo extends ClienteService {
         clienteService.save(clientePrueba);
 
     }
+    //Despues de cada prueba va a eliminar el cliente
     @AfterEach
     void tearDown(){
         clienteService.delete(clientePrueba.getCedula());
     }
 
-
+    /*
+   Test
+   Prueba de la lista de clientes
+    */
     @Test
     void testNegativoListar() {
         List<Cliente> clientes = clienteService.listar();
         Assertions.assertNull(clientes);
     }
 
-
+    /*
+   Test
+   Prueba de la lista de clientes por id
+    */
     @Test
     void testNegativoListarId() {
         int cedula = 0;
@@ -57,6 +66,10 @@ class ClienteServiceTestNegativo extends ClienteService {
         Assertions.assertNull(cliente);
     }
 
+    /*
+    Test
+    Prueba de logear un cliente
+     */
     @Test
     void testNegativoLogin() {
         int cedula = 0;
@@ -71,6 +84,10 @@ class ClienteServiceTestNegativo extends ClienteService {
         Assertions.assertFalse(login);
     }
 
+    /*
+   Test
+   Prueba de guardar un cliente
+    */
     @Test
     void testNegativoSave() {
         Cliente cliente1 = new Cliente();
@@ -84,6 +101,10 @@ class ClienteServiceTestNegativo extends ClienteService {
         Assertions.assertFalse(saveSuccess);
     }
 
+    /*
+   Test
+   Prueba de eliminar un cliente
+    */
     @Test
     void testNegativoDelete() {
         int cedula = 0;
