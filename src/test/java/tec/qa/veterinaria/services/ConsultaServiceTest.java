@@ -20,11 +20,12 @@ ITCR 2022
 @SpringBootTest
 class ConsultaServiceTest extends ConsultaService {
 
+    //Prueba de la clase Consulta
     @Autowired
     private ConsultaService consultaService;
-
     private Consulta consultaPrueba = new Consulta();
 
+    //Se ejecuta antes de cada prueba y crea una consulta
     @BeforeEach
     void setUp() {
         Date fecha = new Date(2020, 10, 10);
@@ -33,17 +34,24 @@ class ConsultaServiceTest extends ConsultaService {
         consultaService.save(consultaPrueba);
 
     }
+    //Se ejecuta despues de cada prueba y elimina la consulta
     @AfterEach
     void tearDown(){
         consultaService.delete(consultaPrueba.getId());
     }
 
+    /*
+    Prueba que verifica que la lista de consultas no sea nula
+     */
     @Test
     void testListar() {
         List<Consulta> consultas = consultaService.listar();
         Assertions.assertNotNull(consultas);
     }
 
+    /*
+    Prueba que verifica que la lista de consultas por id no sea nula
+     */
     @Test
     void testListarId() {
         int id = 0;
@@ -57,6 +65,9 @@ class ConsultaServiceTest extends ConsultaService {
         Assertions.assertNotNull(consulta);
     }
 
+    /*
+    Prueba que verifica que la consulta se guarde correctamente
+     */
     @Test
     void testSave() {
         Consulta consulta1 = new Consulta();
@@ -70,6 +81,9 @@ class ConsultaServiceTest extends ConsultaService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que verifica que la consulta se borre correctamente
+     */
     @Test
     void testDelete() {
         int id = 0;

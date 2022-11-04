@@ -20,26 +20,34 @@ ITCR 2022
 @SpringBootTest
 class ExpedienteServiceTest extends ExpedienteService {
 
-
+    //Prueba la clase de Expediente
     @Autowired
     private ExpedienteService expedienteService;
     private Expediente expedientePrueba = new Expediente();
+    //Se ejecuta antes de cada prueba para crear un expediente
     @BeforeEach
     void setUp() {
         expedientePrueba.setId(1);
         expedienteService.save(expedientePrueba);
     }
+    //Se ejecuta después de cada prueba para eliminar el expediente
     @AfterEach
     void tearDown(){
         expedienteService.delete(expedientePrueba.getId());
     }
 
+    /*
+    Prueba que la lista de expedientes no sea nula
+     */
     @Test
     void testListar() {
         List<Expediente> expedientes = expedienteService.listar();
         Assertions.assertNotNull(expedientes);
     }
 
+    /*
+    Prueba que el expediente no sea nulo cuando se busca por ID
+     */
     @Test
     void testListarId() {
         int id = 0;
@@ -53,6 +61,9 @@ class ExpedienteServiceTest extends ExpedienteService {
         Assertions.assertNotNull(expediente);
     }
 
+    /*
+    Prueba que el expediente se haya guardado correctamente
+     */
     @Test
     void testSave() {
         Expediente expediente1 = new Expediente();
@@ -64,6 +75,9 @@ class ExpedienteServiceTest extends ExpedienteService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que el expediente se haya eliminado correctamente
+     */
     @Test
     void testDelete() {
         int id = 0;
@@ -78,6 +92,9 @@ class ExpedienteServiceTest extends ExpedienteService {
     }
 
     //REVISAR ESTE TEST
+    /*
+    Prueba que se pueda listar un expediente por mascota
+     */
     @Test
     void testListarByMascota() {
         Mascota mascota1 = new Mascota();

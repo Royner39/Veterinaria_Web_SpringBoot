@@ -55,20 +55,31 @@ class MascotaTest extends Mascota {
         assertEquals("01/01/2020", mascota.getFechaNacimiento());
     }
 
-
+    /*
+    Test
+    Descripción: Gets y Sets de Sexo
+     */
     @Test
     void testSexo() {
         mascota.setSexo("Macho");
         assertEquals("Macho", mascota.getSexo());
     }
-    
+
+    /*
+    Test
+    Descripción: Gets y Sets de Expediente
+     */
     @Test
     void testExpediente() {
         Expediente expediente = new Expediente();
         mascota.setExpediente(expediente);
         assertEquals(expediente, mascota.getExpediente());
     }
-    
+
+    /*
+    Test
+    Descripción: Gets y Sets de Cliente
+     */
     @Test
     void testCliente() {
         Cliente cliente = new Cliente();
@@ -76,6 +87,10 @@ class MascotaTest extends Mascota {
         assertEquals(cliente, mascota.getCliente());
     }
 
+    /*
+    Test
+    Descripción: Gets y Sets de Consultas
+     */
     @Test
     void testConsultas() {
         Consulta consulta = new Consulta();

@@ -24,12 +24,12 @@ class MascotaServiceTest extends MascotaService {
 
 
 
-
+    // Prueba la clase Mascota
     @Autowired
     private MascotaService mascotaService;
-
     private Mascota mascotaPrueba = new Mascota();
 
+    //Se ejecuta antes de cada prueba y crea una mascota
     @BeforeEach
     void setUp() {
         Date fecha = new Date(2020, 10, 10);
@@ -40,17 +40,24 @@ class MascotaServiceTest extends MascotaService {
         mascotaService.save(mascotaPrueba);
 
     }
+    //Se ejecuta despues de cada prueba y elimina la mascota
     @AfterEach
     void tearDown(){
         mascotaService.delete(mascotaPrueba.getId());
     }
 
+    /*
+    Prueba que verifica que la lista de mascotas no sea nula
+     */
     @Test
     void testListar() {
         List<Mascota> mascotas = mascotaService.listar();
         Assertions.assertNotNull(mascotas);
     }
 
+    /*
+    Prueba que verifica que la lista de mascotas por id no sea nula
+     */
     @Test
     void testListarId() {
         int id = 0;
@@ -64,6 +71,9 @@ class MascotaServiceTest extends MascotaService {
         Assertions.assertNotNull(mascota);
     }
 
+    /*
+    Prueba que verifica que la mascota se guarde correctamente
+     */
     @Test
     void testSave() {
         Mascota mascota1 = new Mascota();
@@ -79,6 +89,9 @@ class MascotaServiceTest extends MascotaService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que verifica que la mascota se borre correctamente
+     */
     @Test
     void testDelete() {
         int id = 0;
@@ -93,6 +106,9 @@ class MascotaServiceTest extends MascotaService {
     }
 
     //REVISAR ESTE TEST
+    /*
+    Prueba que verifica que la lista por cliente contenga el cliente
+     */
     @Test
     void testListarByCliente() {
         Cliente cliente1 = new Cliente();

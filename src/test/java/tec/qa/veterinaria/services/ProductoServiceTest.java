@@ -21,12 +21,12 @@ ITCR 2022
 class ProductoServiceTest extends ProductoService {
 
 
-
+    //Prueba de la clase Producto
     @Autowired
     private ProductoService productoService;
-
     private Producto productoPrueba = new Producto();
 
+    //Antes de cada prueba va a crear un producto
     @BeforeEach
     void setUp() {
         productoPrueba.setId(1);
@@ -35,17 +35,24 @@ class ProductoServiceTest extends ProductoService {
         productoPrueba.setStock(10);
         productoService.save(productoPrueba);
     }
+    //Despues de cada prueba va a eliminar el producto
     @AfterEach
     void tearDown(){
         productoService.delete(productoPrueba.getId());
     }
 
+    /*
+    Prueba que verifica que la lista de productos no sea nula
+     */
     @Test
     void testListar() {
         List<Producto> productos = productoService.listar();
         Assertions.assertNotNull(productos);
     }
 
+    /*
+    Prueba que verifica que la lista de productos por id no sea nula
+     */
     @Test
     void testListarId() {
         int id = 0;
@@ -59,6 +66,9 @@ class ProductoServiceTest extends ProductoService {
         Assertions.assertNotNull(producto);
     }
 
+    /*
+    Prueba que verifica que el guardado de un producto no sea nulo
+     */
     @Test
     void testSave() {
         Producto producto1 = new Producto();
@@ -73,6 +83,9 @@ class ProductoServiceTest extends ProductoService {
         Assertions.assertTrue(saveSuccess);
     }
 
+    /*
+    Prueba que verifica que el producto se haya eliminado
+     */
     @Test
     void testDelete() {
         int id = 0;
