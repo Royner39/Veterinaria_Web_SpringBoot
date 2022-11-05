@@ -13,6 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>veterinaria</name>
     <description>veterinaria</description>
+
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -113,6 +114,7 @@
                     <reportDirectory>${basedir}\target\allure-report</reportDirectory>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

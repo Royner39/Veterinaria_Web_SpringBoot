@@ -29,7 +29,6 @@ class ProductoServiceTest extends ProductoService {
     //Antes de cada prueba va a crear un producto
     @BeforeEach
     void setUp() {
-        productoPrueba.setId(1);
         productoPrueba.setDescripcion("Producto de prueba");
         productoPrueba.setPrecio(100);
         productoPrueba.setStock(10);
