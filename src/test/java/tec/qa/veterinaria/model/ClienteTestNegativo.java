@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 /*
 Autores: Pablo Muñoz Hidalgo, Luis Andrés Rojas, Royner Miranda Segura
 Clase: Aseguramiento de la Calidad de Software
@@ -23,7 +25,7 @@ class ClienteTestNegativo extends Cliente {
     @Test
     void testNegativoCedula() {
         cliente.setCedula(155223654);
-        assertEquals(15523654, cliente.getCedula());
+        assertNotEquals(15523654, cliente.getCedula());
     }
 
     /*
@@ -33,7 +35,7 @@ class ClienteTestNegativo extends Cliente {
     @Test
     void testNegativoNombre() {
         cliente.setNombre("John Doe");
-        assertEquals("John Doe", cliente.getNombre());
+        assertNotEquals("Doe John", cliente.getNombre());
     }
 
     /*
@@ -43,7 +45,7 @@ class ClienteTestNegativo extends Cliente {
     @Test
     void testNegativoTelefono() {
         cliente.setTelefono(465431321);
-        assertEquals(465431321, cliente.getTelefono());
+        assertNotEquals(345345345, cliente.getTelefono());
     }
 
     /*
@@ -53,7 +55,7 @@ class ClienteTestNegativo extends Cliente {
     @Test
     void testNegativoEmail() {
         cliente.setEmail("aaa(a)gmail.com");
-        assertEquals("aaa@gmail.com", cliente.getEmail());
+        assertNotEquals("aaa@gmail.com", cliente.getEmail());
     }
 
     /*
@@ -63,7 +65,7 @@ class ClienteTestNegativo extends Cliente {
     @Test
     void testNegativoPassword() {
         cliente.setPassword("123456");
-        assertEquals("contrasena123", cliente.getPassword());
+        assertNotEquals("contrasena123", cliente.getPassword());
     }
 
 

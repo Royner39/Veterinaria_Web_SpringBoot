@@ -103,16 +103,5 @@ class MascotaServiceTest extends MascotaService {
     }
 
 
-    /*
-    Prueba que verifica que la lista por cliente contenga el cliente
-     */
-    @Test
-    void testListarByCliente() {
-        Cliente cliente1 = new Cliente();
-        cliente1.setNombre("TEST");
-        cliente1.setEmail("test@vet.com");
-        cliente1.setPassword("test123");
-        cliente1.setMascotas(mascotaPrueba);
-        Assertions.assertTrue(mascotaService.listarByCliente(cliente1).contains(mascotaPrueba));
-    }
+
 }

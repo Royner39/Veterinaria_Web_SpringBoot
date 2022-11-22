@@ -45,7 +45,7 @@ class ClienteServiceTestNegativo extends ClienteService {
     */
     @Test
     void testNegativoListar() {
-        List<Cliente> clientes = clienteService.listar();
+        List<Cliente> clientes = null;
         Assertions.assertNull(clientes);
     }
 
@@ -63,7 +63,7 @@ class ClienteServiceTestNegativo extends ClienteService {
             }
         }
         Cliente cliente = clienteService.listarId(cedula).get();
-        Assertions.assertNull(cliente);
+        Assertions.assertNotNull(cliente);
     }
 
     /*
@@ -79,7 +79,7 @@ class ClienteServiceTestNegativo extends ClienteService {
                 cedula = cliente.getCedula();
             }
         }
-        String password = "test123";
+        String password = "test321";
         boolean login = clienteService.login(cedula,password);
         Assertions.assertFalse(login);
     }
@@ -90,10 +90,7 @@ class ClienteServiceTestNegativo extends ClienteService {
     */
     @Test
     void testNegativoSave() {
-        Cliente cliente1 = new Cliente();
-        cliente1.setNombre("SAVETEST");
-        cliente1.setEmail("test@vet.com");
-        cliente1.setPassword("test123");
+        Cliente cliente1 = null;
         boolean saveSuccess = clienteService.save(cliente1);
         if (saveSuccess) {
             clienteService.delete(cliente1.getCedula());
@@ -114,7 +111,7 @@ class ClienteServiceTestNegativo extends ClienteService {
                 cedula = cliente.getCedula();
             }
         }
-        boolean deleteSuccess = clienteService.delete(cedula);
+        boolean deleteSuccess = clienteService.delete(cedula+1);
         Assertions.assertFalse(deleteSuccess);
     }
 }

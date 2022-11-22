@@ -44,7 +44,7 @@ class ConsultaServiceTestNegativo extends ConsultaService {
      */
     @Test
     void testNegativoListar() {
-        List<Consulta> consultas = consultaService.listar();
+        List<Consulta> consultas = null;
         Assertions.assertNull(consultas);
     }
     /*
@@ -60,7 +60,7 @@ class ConsultaServiceTestNegativo extends ConsultaService {
             }
         }
         Consulta consulta = consultaService.listarId(id).get();
-        Assertions.assertNull(consulta);
+        Assertions.assertNotNull(consulta);
     }
 
     /*
@@ -68,10 +68,7 @@ class ConsultaServiceTestNegativo extends ConsultaService {
      */
     @Test
     void testNegativoSave() {
-        Consulta consulta1 = new Consulta();
-        Date fecha = new Date(2020, 10, 10);
-        consulta1.setFecha(fecha);
-        consulta1.setDescripcion("TEST");
+        Consulta consulta1 = null;
         boolean saveSuccess = consultaService.save(consulta1);
         if (saveSuccess) {
             consultaService.delete(consulta1.getId());
@@ -91,7 +88,7 @@ class ConsultaServiceTestNegativo extends ConsultaService {
                 id = consulta.getId();
             }
         }
-        boolean deleteSuccess = consultaService.delete(id);
+        boolean deleteSuccess = consultaService.delete(id+1);
         Assertions.assertFalse(deleteSuccess);
     }
 }

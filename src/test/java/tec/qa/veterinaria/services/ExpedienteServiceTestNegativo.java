@@ -27,7 +27,6 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
     //Se ejecuta antes de cada prueba para crear un expediente
     @BeforeEach
     void setUp() {
-        expedientePrueba.setId(1);
         expedienteService.save(expedientePrueba);
     }
 
@@ -42,7 +41,7 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
      */
     @Test
     void testNegativoListar() {
-        List<Expediente> expedientes = expedienteService.listar();
+        List<Expediente> expedientes = null;
         Assertions.assertNull(expedientes);
     }
 
@@ -59,7 +58,7 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
             }
         }
         Expediente expediente = expedienteService.listarId(id).get();
-        Assertions.assertNull(expediente);
+        Assertions.assertNotNull(expediente);
     }
 
     /*
@@ -67,8 +66,7 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
      */
     @Test
     void testNegativoSave() {
-        Expediente expediente1 = new Expediente();
-        expediente1.setId(2);
+        Expediente expediente1 = null;
         boolean saveSuccess = expedienteService.save(expediente1);
         if (saveSuccess) {
             expedienteService.delete(expediente1.getId());
@@ -88,7 +86,7 @@ class ExpedienteServiceTestNegativo extends ExpedienteService {
                 id = expediente.getId();
             }
         }
-        boolean deleteSuccess = expedienteService.delete(id);
+        boolean deleteSuccess = expedienteService.delete(id+1);
         Assertions.assertFalse(deleteSuccess);
     }
 

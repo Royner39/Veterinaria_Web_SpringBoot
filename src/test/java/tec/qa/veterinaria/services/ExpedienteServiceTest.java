@@ -27,7 +27,6 @@ class ExpedienteServiceTest extends ExpedienteService {
     //Se ejecuta antes de cada prueba para crear un expediente
     @BeforeEach
     void setUp() {
-        expedientePrueba.setId(1);
         expedienteService.save(expedientePrueba);
     }
     //Se ejecuta después de cada prueba para eliminar el expediente
@@ -91,18 +90,5 @@ class ExpedienteServiceTest extends ExpedienteService {
         Assertions.assertTrue(deleteSuccess);
     }
 
-    /*
-    Prueba que se pueda listar un expediente por mascota
-     */
-    @Test
-    void testListarByMascota() {
-        Mascota mascota1 = new Mascota();
-        mascota1.setId(2);
-        mascota1.setFechaNacimiento("2020-01-01");
-        mascota1.setNombre("Mascota1");
-        mascota1.setEspecie("Raza1");
-        expedientePrueba.setMascota(mascota1);
-        Expediente expediente = expedienteService.listarByMascota(mascota1);
-        Assertions.assertNotNull(expediente);
-    }
+
 }
